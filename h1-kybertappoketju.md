@@ -12,3 +12,11 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
 - Debian GNU/Linux 12.6
 
 ---
+
+
+
+---
+
+### Lähteet
+
+Tero Karvinen. Tunkeutumistestaus: https://terokarvinen.com/tunkeutumistestaus/
