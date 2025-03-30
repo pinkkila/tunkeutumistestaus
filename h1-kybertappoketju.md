@@ -130,6 +130,49 @@ msfadmin::msfadmin
 
 #### f) Tee koneiden välille virtuaaliverkko.
 
+Kuten aiemmin käyttämässäni [Cybercat Labs:n videossa](https://www.youtube.com/watch?v=-8GibItV6C0) kerrotaan UTM:n Network Mode Host Only mahdollistaa sen, että Kali ja Metaspoitable saavat toisiinsa yhteyden, mutta eivät ole yhteydessä internettiin. Tämä käy ilmi myös UTM:n [dokumentaatiosta](https://docs.getutm.app/settings-qemu/devices/network/network/#network-mode) 
+
+![img_8.png](img_8.png)
+
+Sama toimi myös toisinpäin, eli kun pingasin Metaspoitablesta Kaliin.
+
+---
+
+### g) Etsi Metasploitable porttiskannaamalla (nmap -sn). Tarkista selaimella, että löysit oikean IP:n - Metasploitablen weppipalvelimen etusivulla lukee Metasploitable.
+
+nmap man-sivun mukaan -sn disabloi porttiskannauksen.
+
+```
+nmap -sn
+```
+
+No targets  
+
+![img_9.png](img_9.png)
+
+Virtuaalikoneiden käyttämä Host Only verkko tähän pitäisi varmastikin laittaa ja kun  lueskelin [Karvisen sivuja](https://terokarvinen.com/tunkeutumistestaus/), kokeilin laittaa targetiksi Host Only verkon osoitteen ja /24 perään. Tällä löytyi kolme IP-osoitetta: Kalin oma IP-osoite, Metasploitable ja kolmas oli koneeni ifconfigissa näkyvän bridgen osoite. 
+
+Selaimella aukesi tämä sivu:
+
+![img_10.png](img_10.png)
+
+---
+
+### h) Porttiskannaa Metasploitable huolellisesti ja kaikki portit (nmap -A -T4 -p-). Poimi 2-3 hyökkääjälle kiinnostavinta porttia. Analysoi ja selitä tulokset näiden porttien osalta.
+
+nmap man-sivun mukaan -p- skannaa kaikki porit 1:stä aina portiin 65535.
+
+```
+nmap -A -T4 -p-
+```
+
+Tietokanta on varmastikkin kiinnostava, koska sehän voi sisältää vaikka mitä tärkeää.  
+
+![img_11.png](img_11.png)
+
+
+
+
 
 
 ---
@@ -140,10 +183,12 @@ Tero Karvinen. Tunkeutumistestaus: https://terokarvinen.com/tunkeutumistestaus/
 
 UTM Documentation. Network Mode: https://docs.getutm.app/settings-qemu/devices/network/network/#network-mode
 
-Master OccupytheWeb 2023. Network Basics for Hackers: How Networks Work and How They. https://www.amazon.com/Network-Basics-Hackers-Networks-Break/dp/B0BS3GZ1R9
+Master OccupytheWeb 2023.
+Network Basics for Hackers: How Networks Work and How They Break.
+https://www.amazon.com/Network-Basics-Hackers-Networks-Break/dp/B0BS3GZ1R9.
 
 nmap man sivut.
 
-- Cybercat Labs. M1 MacBook Hacking: Metasploitable 2 & Kali Linux: https://www.youtube.com/watch?v=-8GibItV6C0
+Cybercat Labs. M1 MacBook Hacking: Metasploitable 2 & Kali Linux: https://www.youtube.com/watch?v=-8GibItV6C0
 
-- Rapid7. Metasploitable 2 Documentations: https://docs.rapid7.com/metasploit/metasploitable-2/
+Rapid7. Metasploitable 2 Documentations: https://docs.rapid7.com/metasploit/metasploitable-2/
