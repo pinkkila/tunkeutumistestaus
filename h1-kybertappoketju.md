@@ -15,7 +15,9 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
 
 #### [Herrasmieshakkerit](https://www.withsecure.com/fi/whats-new/podcasts/herrasmieshakkerit) tai [Darknet Diaries](https://darknetdiaries.com/episode/), yksi vapaavalintainen jakso jommasta kummasta.
 
-Kuuntelin Herrasmieshakkereiden jakson "Tapaus Vastaamo".
+- Kuuntelin Herrasmieshakkereiden jakson "Tapaus Vastaamo".
+- Jaksossa oli vieraana rikosylikomisario Marko Leponen, joka toimi Vastaamon kohdistuneen tietomurron tutkinnan johtajana. 
+- Jakso oli todella mielenkiintoinen ja yksittäisinä mielestäni erityisen jänninä asioina olivat mm. että tutkintamatriaali oli yksi betatavu (1000 teraa), poliisi onnistui murtamaan tutkinnan aikana 64 merkkiä pitkän salasanan ja mikä ilmeisesti on erittäin poikkeuksellista, niin poliisi onnistui jäljittämään Monero kryptovaluuttaa. 
 
 #### [Hutchins et al. 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains](https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf), chapters Abstract, 3.2 Intrusion Kill Chain.
 
