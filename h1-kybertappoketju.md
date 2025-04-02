@@ -100,7 +100,7 @@ masscan -p80,443 192.168.3.0/24 --rate=1000
 Valitsen UTM:ssä virtuaalikoneen networkiksi **Host Only**. Host Only estää virtuaalikoneen pääsyn
 internettiin ([UTM Documentation: Network Mode](https://docs.getutm.app/settings-qemu/devices/network/network/#network-mode)).
 
-![img.png](img.png)
+![img.png](img/h1-kybertappoketju/img.png)
 
 ---
 
@@ -111,7 +111,7 @@ internettiin ([UTM Documentation: Network Mode](https://docs.getutm.app/settings
 Portteja on kokonaisuudessaan 65536 (2 potenssiin 16), joista ensimmäisistä 1024 porttia pidetään "yleisinä" portteina (
 Master OccupytheWeb 2023, 18). Todennäköisesti 1000 tavallisimmalla portilla viitataan juuri näihin.
 
-#### man nmap
+#### man nmap (tein tämän ennen kuin katsoin x:n O'Riley videot)
 
 - -T4 nopeuttaa hakua
 - -A mahdollistaa OS ja version havainnoinnnin, script skannauksen ja tracerouten
@@ -122,7 +122,7 @@ nmap -T4 -A localhost
 
 Näyttää siltä että nmap tekee juurikin oletuksena hauan 1000 portille. Yhtään porttia ei näytä olevan auki:
 
-![img_1.png](img_1.png)
+![img_1.png](img/h1-kybertappoketju/img_1.png)
 
 ---
 
@@ -130,17 +130,17 @@ Näyttää siltä että nmap tekee juurikin oletuksena hauan 1000 portille. Yht�
 
 Kalissa näyttää olevan valmiina apache2 ja ssh:
 
-![img_3.png](img_3.png)
+![img_3.png](img/h1-kybertappoketju/img_3.png)
 
 Käynnistin molemmat:
 
-![img_4.png](img_4.png)
+![img_4.png](img/h1-kybertappoketju/img_4.png)
 
-![img_5.png](img_5.png)
+![img_5.png](img/h1-kybertappoketju/img_5.png)
 
 nmap antoi seuraavan tuloksen:
 
-![img_7.png](img_7.png)
+![img_7.png](img/h1-kybertappoketju/img_7.png)
 
 nmap löysi nyt käynnissä olevien apache2 ja ssh:n avoimet portit.
 
@@ -148,7 +148,7 @@ nmap löysi nyt käynnissä olevien apache2 ja ssh:n avoimet portit.
 
 ### e) Asenna Metasploitable 2 virtuaalikoneeseen
 
-Tein oman asennusohjeen, jos jatkossa olisi tarve asentaa udestaan niin voisin tehdä sen sitten nopeasti. Jos et käytä macOS tai käytät ja sinulla ei ollut mitään ongelmia, niin tämä osuus kannattaa varmaankin vain skipata.
+Tein oman asennusohjeen, jos jatkossa olisi tarve asentaa uudestaan niin voisin tehdä sen sitten nopeasti. Jos et käytä macOS tai jos käytät ja asennuksessa ei ollut mitään, niin tämä osuus kannattaa varmaankin skipata.
 
 #### Install Metasploitable 2
 
@@ -213,7 +213,7 @@ Network Mode Host Only mahdollistaa sen, että Kali ja Metaspoitable saavat tois
 yhteydessä internettiin. Tämä käy ilmi myös UTM:
 n [dokumentaatiosta](https://docs.getutm.app/settings-qemu/devices/network/network/#network-mode)
 
-![img_8.png](img_8.png)
+![img_8.png](img/h1-kybertappoketju/img_8.png)
 
 Sama toimi myös toisinpäin, eli kun pingasin Metaspoitablesta Kaliin.
 
@@ -229,7 +229,7 @@ nmap -sn
 
 No targets
 
-![img_9.png](img_9.png)
+![img_9.png](img/h1-kybertappoketju/img_9.png)
 
 Virtuaalikoneiden käyttämä Host Only verkko tähän pitäisi varmastikin laittaa ja kun
 lueskelin [Karvisen sivuja](https://terokarvinen.com/tunkeutumistestaus/), kokeilin laittaa targetiksi Host Only verkon
@@ -238,7 +238,7 @@ ifconfigissa näkyvän bridgen osoite.
 
 Selaimella aukesi tämä sivu:
 
-![img_10.png](img_10.png)
+![img_10.png](img/h1-kybertappoketju/img_10.png)
 
 ---
 
@@ -250,12 +250,19 @@ nmap man-sivun mukaan -p- skannaa kaikki porit 1:stä aina portiin 65535.
 nmap -A -T4 -p-
 ```
 
-Tietokanta on varmastikin kiinnostava, koska sehän voi sisältää vaikka mitä tärkeää.
+Tietokanta on varmastikin kiinnostava, koska sehän voi sisältää vaikka mitä tärkeää. Metasploitablessa ovat auki MySQL ja PostgreSQL portit:
 
-![img_11.png](img_11.png)
+![img_11.png](img/h1-kybertappoketju/img_11.png)
 
+![img_13.png](img/h1-kybertappoketju/img_13.png)
 
+Seuraavaksi katsoin avoimena olevaa ssh porttia. [ssh.com](https://www.ssh.com/academy/ssh/host-key) on  suositeltavaa, että host key ei jaeta ja nmap näyttää löytävän ne (kuten löysi myös itseltäni tehtävässä d):
 
+![img_12.png](img/h1-kybertappoketju/img_12.png)
+
+SMTP portti on auki. SMTP (Simple Mail Transfer Protocol) on protokolla sähköpostiviestien välittämiseen sähköpostipalvelimelle.
+
+![img_14.png](img/h1-kybertappoketju/img_14.png)
 
 
 
@@ -290,4 +297,6 @@ Cybercat Labs. M1 MacBook Hacking: Metasploitable 2 & Kali Linux: https://www.yo
 
 Rapid7. Metasploitable 2 Documentations: https://docs.rapid7.com/metasploit/metasploitable-2/
 
+ssh.com https://www.ssh.com/academy/ssh/host-key
 
+Wikipedia. SMTP: https://fi.wikipedia.org/wiki/SMTP
