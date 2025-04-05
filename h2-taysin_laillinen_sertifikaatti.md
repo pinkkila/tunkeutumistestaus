@@ -122,13 +122,15 @@ Tarkastelin ensin html ja sivu tallentaa kommentteihin syötetyn tekstin varmaan
 
 Kokeilin ensin omalla html:llä, miten saa laukaistua alertin heti sivun latausvaiheessa. Kun selailin, mitä `window` objektista löytyy, niin löysin `onload`, joka on event, joka laukeaa, kun koko sivu on ladattu [^4]  
 
-Kokeilin seuraavaa payloadia (kokeilin, että window objectin voi jättää pois ja toimii silti).
+Kokeilin seuraavaa payloadia ja se toimi(kokeilin, että window objectin voi jättää pois ja toimii silti). 
 
 ```
 <script>window.onload = () => alert("xss");</script>
 ```
 
 ![img_6.png](img_6.png)
+
+Payload tallentuu commentista serverille ja sitä ei escapta missään vaiheessa, vaan se lisääntyy html:ään ajettavana koodina (tämä ei ilmene seuraavasta kuvasta, koska escapattu näyttäisi ihan samalta).
 
 ![img_7.png](img_7.png)
 
