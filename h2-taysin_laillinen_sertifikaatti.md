@@ -15,6 +15,8 @@ Tehtävät ovat Tero Karvisen opintojaksolta Tunkeutumistestaus: https://terokar
 
 ### x) Lue/katso ja tiivistä.
 
+
+
 ---
 
 ### a) Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi.
@@ -27,33 +29,33 @@ sudo apt-get install zaproxy
 
 Seuraavaksi vaidoin Kalin network moodin Host Only:ksi.
 
-![img_9.png](img_9.png)
+![img_9.png](img/h2-taysin_laillinen_sertifikaatti/img_9.png)
 
 Laiton Zap päälle ja generoin sertifikaatin (Tools - Network - Server Certificate - Save).
 
-![img_10.png](img_10.png)
+![img_10.png](img/h2-taysin_laillinen_sertifikaatti/img_10.png)
 
 Firefox asetuksista etsein certikaattiasetukset hakusanalla:
 
-![img_11.png](img_11.png)
+![img_11.png](img/h2-taysin_laillinen_sertifikaatti/img_11.png)
 
 View Certificates pystyy importoimaan äsken luodun sertifikaatin. 
 
-![img_12.png](img_12.png)
+![img_12.png](img/h2-taysin_laillinen_sertifikaatti/img_12.png)
 
-![img_13.png](img_13.png)
+![img_13.png](img/h2-taysin_laillinen_sertifikaatti/img_13.png)
 
 Asetin Zapin sieppaamaan myös kuvat
 
-![img_14.png](img_14.png)
+![img_14.png](img/h2-taysin_laillinen_sertifikaatti/img_14.png)
 
 Asetin zap proxyksi firefoxiin. Etsein proxy hakusanalla ja laitoin seuraavat asetukset:
 
-![img_15.png](img_15.png)
+![img_15.png](img/h2-taysin_laillinen_sertifikaatti/img_15.png)
 
 Localhost ei toiminut kuten tehtävänannossa sanottiin. Toisen virtuaalikoneen web palvelimella sai testattua toimivuuden. Kuvien toimivuutta ei vielä voinut testata.
 
-![img_16.png](img_16.png)
+![img_16.png](img/h2-taysin_laillinen_sertifikaatti/img_16.png)
 
 ---
 
@@ -61,37 +63,37 @@ Localhost ei toiminut kuten tehtävänannossa sanottiin. Toisen virtuaalikoneen 
 
 Asensin FoxyProxy [^5] addonsin Firefoxiin.
 
-![img_8.png](img_8.png)
+![img_8.png](img/h2-taysin_laillinen_sertifikaatti/img_8.png)
 
 Otin Firefoxin asetuksista Zap pois ja asetin FoxyProxyn asetukse ensin seuraavasti:
 
-![img_17.png](img_17.png)
+![img_17.png](img/h2-taysin_laillinen_sertifikaatti/img_17.png)
 
 Metasploitablen web palvelu toimii taas, mutta localhost ei näy Zapissa. Tämäkään ei vaikuttanut.
 
-![img_18.png](img_18.png)
+![img_18.png](img/h2-taysin_laillinen_sertifikaatti/img_18.png)
 
 Firefox ei huomioi localhostia proxy configurointiin automaattisesti, vaan jättää sen pois ja asetuksia tulee muuttaa [^6].
 
-![img_19.png](img_19.png)
+![img_19.png](img/h2-taysin_laillinen_sertifikaatti/img_19.png)
 
-![img_20.png](img_20.png)
+![img_20.png](img/h2-taysin_laillinen_sertifikaatti/img_20.png)
 
 Mutta asiaa tutkittuani tuo, mitä äsken tein ja muutin about:configia ei vaikuta FoxyProxyyn ja versiossa 8.10 FoxyProxy jättää defaulttina localhostin proxyamatta. 
 
-![img_21.png](img_21.png)
+![img_21.png](img/h2-taysin_laillinen_sertifikaatti/img_21.png)
 
 Tuon aiemmin laittamani asetus about:configissa mahdollistaa locahostin proxyamisen selaimen omalla proxy asetuksella.
 
-![img_22.png](img_22.png)
+![img_22.png](img/h2-taysin_laillinen_sertifikaatti/img_22.png)
 
-![img_23.png](img_23.png)
+![img_23.png](img/h2-taysin_laillinen_sertifikaatti/img_23.png)
 
 Patterns toiminnolla saa rajattua mitkä sivut ohjataan proxyyn. example.com valittuna Metasploitablen web palvelu ei mene proxyyn.
 
-![img_24.png](img_24.png)
+![img_24.png](img/h2-taysin_laillinen_sertifikaatti/img_24.png)
 
-![img_25.png](img_25.png)
+![img_25.png](img/h2-taysin_laillinen_sertifikaatti/img_25.png)
 
 ---
 
@@ -101,7 +103,7 @@ Kun tutustuin tehtäviin en malttanut olla aloittamatta suoraan tästä. En ole 
 
 Ensiksi katsoin millaista html:ää input sisältää. Attribuutteina form tagilla on action="/" ja method="GET". action-attribuutissa määritetään URL, jossa formin submit käitellaan ja method="GET" taas aiheuttaa formin datan liittämisen URL:n ? separaattorilla [^2]. Tiedän Reactia tehneenä, että tässä buttonin submit aiheuttaa SubmitEventin (Reactissa tämä tarvii lähes poikkeuksetta estää).
 
-![img_3.png](img_3.png)
+![img_3.png](img/h2-taysin_laillinen_sertifikaatti/img_3.png)
 
 Testatakseni tein seuraavan html:n, joka sisältää:
 
@@ -115,22 +117,22 @@ Testatakseni tein seuraavan html:n, joka sisältää:
 
 Ja näin kävi (en aluksi tiennyt, että input name attribuutti menee myös urliin, mutta näköjään menee. (ensimmäisessä kuvassa oleva url tulee IntelliJ automaattisesta websocketista)):
 
-![img_1.png](img_1.png)
+![img_1.png](img/h2-taysin_laillinen_sertifikaatti/img_1.png)
 
-![img_2.png](img_2.png)
+![img_2.png](img/h2-taysin_laillinen_sertifikaatti/img_2.png)
 
 Eli tehtävän koodissa SubmitEvent tässä tapauksessa tekee GET pyynnön palvelimelle ja vastaus muokataan sen mukaisesti, mitä urliin tulee formista eli `?search=input`
 
 Jos tekee normaalin haun sivulla tulee haku osaksi html: 
 
-![img_4.png](img_4.png)
+![img_4.png](img/h2-taysin_laillinen_sertifikaatti/img_4.png)
 
 Kokeilen ensimmäista xss-payloadia, mitä tulee mieleen ja se toimi:
 
 ```
 <script>alert(0)</script>
 ```
-![img_5.png](img_5.png)
+![img_5.png](img/h2-taysin_laillinen_sertifikaatti/img_5.png)
 
 ---
 
@@ -146,11 +148,11 @@ Kokeilin seuraavaa payloadia ja se toimi(kokeilin, että window objectin voi jä
 <script>window.onload = () => alert("xss");</script>
 ```
 
-![img_6.png](img_6.png)
+![img_6.png](img/h2-taysin_laillinen_sertifikaatti/img_6.png)
 
 Payload tallentuu commentista serverille ja sitä ei escapta missään vaiheessa, vaan se lisääntyy html:ään ajettavana koodina (tämä ei ilmene seuraavasta kuvasta, koska escapattu näyttäisi ihan samalta).
 
-![img_7.png](img_7.png)
+![img_7.png](img/h2-taysin_laillinen_sertifikaatti/img_7.png)
 
 ---
 
@@ -158,11 +160,11 @@ Payload tallentuu commentista serverille ja sitä ei escapta missään vaiheessa
 
 Lähdin ihan kokeilemaan PortSwiggerin Path travelsal ohjeiden avulla [^8] ja sain kokeilemalla GET pyynnöön statuksella 200 image?filename=../../../etc/passwd
 
-![img_26.png](img_26.png)
+![img_26.png](img/h2-taysin_laillinen_sertifikaatti/img_26.png)
 
 Kuvaa ei nää:
 
-![img_27.png](img_27.png)
+![img_27.png](img/h2-taysin_laillinen_sertifikaatti/img_27.png)
 
 Koska kuvaa ei nähnyt päätin kokeilla Zapilla. Käytin tähän asti UTM hypervisoria, mutta koska en ole asettanut siihen clipboardilta copy pastea, niin vaihdoin Parallelsin Kaliin. Valitettavasti en pysty ottamaan Paralellsin Kalista screenshotteja (johtuu varmaan, koska X11 ja Mac käyttää korkeaa ppi:tä (olen kokeillut vaihtaa Waylandiin Kalin dokumentaation ohjeilla, mutta jostain syystä se ei toimi (kirjatuminen ei kirjaudu (muuten Parallels ja Kali toimii oikein hyvin)))), joten koitan selittää parhaani mukaan.
 
