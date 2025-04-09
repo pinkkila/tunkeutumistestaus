@@ -15,6 +15,57 @@ Tehtävät ovat Tero Karvisen opintojaksolta Tunkeutumistestaus: https://terokar
 
 ### x) Lue/katso ja tiivistä.
 
+- A01:2021 – Broken Access Control (IDOR ja path traversal ovat osa tätä) [^21]
+
+    - Yksi syy Broken Access Control haavoittuvuuden syntymiseen on, että ohjelma ei toteuta "principle of least privilege".
+    - Haavoittuvuus mahdollistaa alun perin rajatuksi pääsyksi tarkoitettun datan saamista manipuloimalla:
+      
+      - URL, sovelluksen tilaa muuten, HTML, uniikkeja identifioivia arvoja, Metadataa, evästeitä, sovelluksen rakennetta
+
+    - Oma ajatus: Tekee kultaisesta säännöstä "principle of least privilege" entistäkin kultaisemman. 
+
+- A10:2021 – Server-Side Request Forgery (SSRF) [^22]
+
+  - SSRF haavoittuvuudessa hyväksikäytetään sovelluksen validoimatonta käyttäjän syöttämää dataa.
+  - Oma ajatus: Validoinnin tarkastaminen voi olla haastavaa hommaa, koska vaihtoehtoja on niin paljon. Varmaan monesti voi olla hyvä, jos koittaa käyttää valmiita kirjastoja tai frameworkien omia ominaisuuksia.
+
+
+- Insecure direct object references (IDOR) [^14]
+
+  - Idor on pääsynhallinnan haavoittuvuus, joka on mahdollista tilanteessa, jossa sovelluksen käyttäjän syöttämällä datalla tehdään suoraan hakuja. esim. URL:ssa payment?payment_number=132 muuttamalla numeroa sovellus suorittaa suoraan uuden haun ilman  authorisointia.
+
+- Path traversal [^8]
+
+  - Haavoittuvuudessa hyökkääjä pääse sovelluksen serverin tiedostoihin. 
+  - Tiedostot voivat olla esim:
+
+    - Sovelluksen koodi ja data
+    - Credentialsit
+    - Sensitiiviset käyttöjärjestelmän tiedostot
+  
+  - Hyökkääjä voi päästä myös kirjoittamaan tiedostoihin.
+
+- Server-side request forgery (SSRF) [^12]
+
+  - Hyökkääjä voi onnistua saamaan pääsyn sovelluksen tai tieojärjestelmän sisäisiin palveluihin. 
+
+- Cross-site scripting [^23]
+
+  - Haavoittuvuus perustuu siihen, että hyökkääjä onnistuu syöttämään sovellukseen koodia, jonka sovellus suorittaa.
+  - XSS hyökkäysten tyypit ovat:
+  
+    - Reflected XSS, skripti tulee HTTP pyynnöstä
+    - Stored XSS, skripti tulee tietokannasta
+    - DOM-based XSS, koodi on Clientilla
+  
+  - Oma ajatus: Tuli tätä miettiessä mieleen, että kun monet sivut käyttävät OAuth2/Open ID connect kirjautumista, missä siis kirjaudutaan vaikka Googlella, niin mitä onnistuisi tekemään siihen oman Googlen näköisen painikkeen. Tämä kirjautuminen johtaa ymmärtääkseni aina redirectiin ja käyttäjä siirtyy toiselle sivulle. Jos tuo toinen sivu olisikin vain tehty googlen kirjautumisen näköiseksi saattaisi käyttäjä ehkä epähuomiossa tulla suht helposti syöttäneeksi omat tietonsa väärään kirjautumiseen.
+  - Oma ajatus: Kirjautumisen toteuttaminen niin, että se nojaa pelkkään JWT:hen Client-sidessa on aika hutera.
+
+- Server-side template injection [^16]
+ 
+  - Haavoittuvuus perustuu sovelluksessa olevan template enginen syötteiden manipuolointiin, joihin hyökkääjällä on pääsy. 
+  - Oma ajatus: Siinä mielessä toki hurjaa tehdä tälläistä sovellusta, jossa käyttäjälle periaatteessa annettaisiin suora pääsy koodiin ja sen muuttamiseen. 
+
 
 
 ---
@@ -166,7 +217,7 @@ Kuvaa ei nää:
 
 ![img_27.png](img/h2-taysin_laillinen_sertifikaatti/img_27.png)
 
-Koska kuvaa ei nähnyt päätin kokeilla Zapilla. Käytin tähän asti UTM hypervisoria, mutta koska en ole asettanut siihen clipboardilta copy pastea, niin vaihdoin Parallelsin Kaliin. Valitettavasti en pysty ottamaan Paralellsin Kalista screenshotteja (johtuu varmaan, koska X11 ja Mac käyttää korkeaa ppi:tä (olen kokeillut vaihtaa Waylandiin Kalin dokumentaation ohjeilla, mutta jostain syystä se ei toimi (kirjatuminen ei kirjaudu (muuten Parallels ja Kali toimii oikein hyvin)))), joten koitan selittää parhaani mukaan.
+Koska kuvaa ei nähnyt päätin kokeilla Zapilla. Käytin tähän asti UTM hypervisoria, mutta koska en ole asettanut siihen clipboardilta copy pastea, niin vaihdoin Parallelsin Kaliin. Valitettavasti en pysty ottamaan Paralellsin Kalista screenshotteja (johtuu varmaan, koska X11 ja Mac käyttää korkeaa ppi:tä (olen kokeillut vaihtaa Waylandiin Kalin dokumentaation ohjeilla, mutta jostain syystä se ei toimi (kirjatuminen ei kirjaudu (muuten Parallels ja Kali toimii oikein hyvin)))), joten koitan kuvien puuttuessa selittää parhaani mukaan.
 
 Laitoin FoxyProxyn Proxy by patternsiin Labin osoitteen, joten vain sen liikenne tuli proxyyn. 
 
@@ -306,7 +357,8 @@ stockApi=http://localhost/admin/delete?username=carlos
 
 Vastaukseskti tuli 401 Unauthorized. Olin hieman ihmeissäni ja menin katsomaan admin paneelia uudellan ja seuraavaksi admin paneelissa oli, että poistaminen onnistui ja tehtävä meni läpi. En tiedä miksi. Testasin uudelleen toisella käyttäjällä ja vaikka pyynnöstä tulee 401, niin toinenkin käyttäjä oli poistunut ja yhtään käyttäjää ei ollut jäljellä. 
 
-Se mitä tässä ymmärtääkseni tapahtuu on, että tehdään pyyntö yhteen osoitteeseen ja pyynnön payloadina lähtee url jolla kutsutaan toista API:a (weliketoshop). Luulen että sen Unauthorized täytyy tulla siitä, että koska pyynnön payload on kelpaamaton eikä stockin määrää voida palauttaa, niin sovellus koodattu palauttamaan Unauthorized (ehkä se on se mitä weliketoshop api palauttaa). Samaan aikaan admin paneelista poistuu käyttäjä localhostin kautta.    
+Se mitä tässä ymmärtääkseni tapahtuu on, että tehdään pyyntö yhteen osoitteeseen ja pyynnön payloadina lähtee url jolla kutsutaan toista API:a (weliketoshop). Luulen että sen Unauthorized täytyy tulla siitä, että koska pyynnön payload on kelpaamaton eikä stockin määrää voida palauttaa, niin sovellus on koodattu palauttamaan Unauthorized (ehkä se on se mitä weliketoshop api palauttaa ja sovellus jatkaa sen eteenpäin). Samaan aikaan admin paneelista poistuu käyttäjä localhostin kautta.    
+
 
 ---
 
@@ -430,3 +482,13 @@ JetBrains IntelliJ IDEA: Code intelligence.
 [^17]: ffuf. pencode: https://github.com/ffuf/pencode
 
 [^18]: Busra Demir. A Pentester's Guide to Server Side Template Injection (SSTI): https://www.cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
+
+[^19]: MitmProxy. About Certificates: https://docs.mitmproxy.org/stable/concepts-certificates/
+
+[^20]: OWASP Top 10 team. A01:2021 – Broken Access Control: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+
+[^21]: OWASP Top 10 team. A01:2021 – Broken Access Control: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+
+[^22]: OWASP Top 10 team. A10:2021 – Server-Side Request Forgery (SSRF): https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
+
+[^23]: PortSwigger: Cross-site scripting: https://portswigger.net/web-security/cross-site-scripting
