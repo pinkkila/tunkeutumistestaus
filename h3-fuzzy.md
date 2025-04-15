@@ -84,11 +84,11 @@ Kokeilin samaa komentoa kuin aiemmassa tehtävässä ja vastauksia responseja tu
 
 Tämän jälkeen vastauksia tuli inhimillinen määrä ja testasin olivatko ne mitä haettiin ja olivathan ne. 
 
-![img.png](img.png)
+![img.png](img/h3-fuzzy/img.png)
 
-![img_1.png](img_1.png)
+![img_1.png](img/h3-fuzzy/img_1.png)
 
-![img_2.png](img_2.png)
+![img_2.png](img/h3-fuzzy/img_2.png)
 
 ### b) Fuff me. Asenna FuffMe-harjoitusmaali. Karvinen 2023: Fuffme - Install Web Fuzzing Target on Debian [^3]
 
@@ -603,11 +603,11 @@ Linux palvelimet kurssilla tehtiin Name Based Virtual Hosteja Apache2:lla, jotan
 
 Otin toisen virtuallikoneen (Debian) ja käytin sillä aiemmin tekemääni verkkosivua jonka ServerName on pinkkila.com ja tein uuden, jonka ServerName on admin.pinkkila.com. Kuvat kertovat toivottasti selkeämmin:
 
-![img_3.png](img_3.png)
+![img_3.png](img/h3-fuzzy/img_3.png)
 
-![img_5.png](img_5.png)
+![img_5.png](img/h3-fuzzy/img_5.png)
 
-![img_4.png](img_4.png)
+![img_4.png](img/h3-fuzzy/img_4.png)
 
 curl komennot näyttävät seuraavilta:
 
@@ -753,7 +753,7 @@ parallels@debian-gnu-linux-12-6:~$ curl 10.37.129.5 -H 'Host: pinkkila.com' -v
 <body>
 ```
 
-
+Apache2 pitäis configuroida niin, että jos ServerName:a tai ServerHost:ia ei löydy palautuisi joku geneerinen not found sivu, jos haluaisi tässä myös admin sivun löytää fuzzaamalla. Jätän sen ajanpuutteen vuoksi seuraavaan kertaan. 
 
 ---
 
