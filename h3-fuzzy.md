@@ -48,7 +48,7 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
 
 ### a) Fuzzzz. Ratkaise dirfuz-1 artikkelista Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf. [^2]
 
-Tehtävän ohjelmaa ei voinut ajaa ARM Macillani, joten tein tehtävät vanhemmalla MacBook Airilla (Intel), johon olen asentanut duol boottina Linuxin.
+Tehtävän ohjelmaa ei voinut ajaa ARM Macillani, joten tein tehtävät vanhemmalla MacBook Airilla (Intel), johon olen asentanut dual boottina Linuxin.
 
 Olin dirtfuzt-0 tehtävässä asentanut ffuf:n ffuf:n GitHub oheilla. [^8]
 
@@ -92,7 +92,7 @@ Tämän jälkeen vastauksia tuli inhimillinen määrä ja testasin olivatko ne m
 
 ### b) Fuff me. Asenna FuffMe-harjoitusmaali. Karvinen 2023: Fuffme - Install Web Fuzzing Target on Debian [^3]
 
-Tehtävän oheilla asensin docker.io:n ja ffuf:n:
+Tehtävän ohjeilla asensin docker.io:n ja ffuf:n:
 
 ```
 sudo apt-get install docker.io ffuf
@@ -103,7 +103,7 @@ Seuraavaksi asensin tehtävän ohjeiden mukaan maalin kloonaamalla sen GitHub re
 ```
 git clone https://github.com/adamtlangley/ffufme
 ```
-- -t - 
+- -t -nimeää imagen ja optionaalisesti tagin [^14] 
 
 ```
 sudo docker build -t ffufme .
@@ -284,7 +284,7 @@ Parametri -e lisää tiedosto tyypin jokaiseen fuzzattavan sanan perään [^10].
 ffuf -w common.txt -e .log -u http://localhost/cd/ext/logs/FUZZ
 ```
 
-```
+```bash
 ┌──(parallels㉿kali-linux-2024-2)-[~/wordlists]
 └─$ ffuf -w ~/wordlists/common.txt -e .log -u http://localhost/cd/ext/logs/FUZZ
 
@@ -447,7 +447,7 @@ Tehtävässä demonstroidaan ffuf ominaisuuttaa fuffazata hitaammin, jotta sovel
 - -p - ffuf pitää määritellyn tauon (tässä 0.1 sekuntia) pyyntöjen välissä
 - -mc - rajaa mitkä statuksen näytetään (tässä 200 ja 429) 
 
-Kun ajoin ensimmäisen komennon komennon, en saanut tehtävässä kuvattu 429 statuksen responseja. Kaikki pyynnöt menivät erroriin. 
+Kun ajoin ensimmäisen komennon, en saanut tehtävässä kuvattu 429 statuksen responseja. Kaikki pyynnöt menivät erroriin. 
 
 ```bash
 ┌──(parallels㉿kali-linux-2024-2)-[~/wordlists]
@@ -599,9 +599,9 @@ redhat                  [Status: 200, Size: 15, Words: 2, Lines: 1, Duration: 0m
 :: Progress: [1907/1907] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Errors: 0 ::
 ```
 
-Linux palvelimet kurssilla tehtiin Name Based Virtual Hosteja Apache2:lla, jotan halusin kokeilla tätä itse tehdyllä web-palvelimella. 
+Linux palvelimet kurssilla tehtiin Name Based Virtual Hosteja Apache2:lla, joten halusin kokeilla tätä itse tehdyllä web-palvelimella. 
 
-Otin toisen virtuallikoneen (Debian) ja käytin sillä aiemmin tekemääni verkkosivua jonka ServerName on pinkkila.com ja tein uuden, jonka ServerName on admin.pinkkila.com. Kuvat kertovat toivottasti selkeämmin:
+Otin toisen virtuallikoneen (Debian) ja käytin sillä aiemmin tekemääni verkkosivua, jonka ServerName on pinkkila.com ja tein uuden, jonka ServerName on admin.pinkkila.com. Kuvat kertovat toivottasti selkeämmin (ip-osoite 10.37.129.5 on Parallelsin Host Only verkon antama osoite Debian virtuaalikoneelle):
 
 ![img_3.png](img/h3-fuzzy/img_3.png)
 
@@ -665,7 +665,7 @@ This is admin page
 * Connection #0 to host admin.pinkkila.com left intact
 ```
 
-Kun nyt kokeilee ffuf:lla tulee tulee kaikista pyynnöistä response statuksella 200. Kuten edellisestä curl komennosta näkee, admin.pinkkila.com Content-Length on 19 tavua. Eli kaikista pyynnöistä mita-tahansa.pinkkila.com tulee tulee reponsena 200 ja "admin" sivu. Jos käytetään filtteriä koon mukaan, löydetään www.
+Kun nyt kokeilee ffuf:lla tulee tulee kaikista pyynnöistä response statuksella 200. Kuten edellisestä curl komennosta näkee, admin.pinkkila.com Content-Length on 19 tavua. Eli kaikista pyynnöistä mita-tahansa.pinkkila.com tulee reponsena 200 ja sisältönä "admin" sivu. Jos käytetään filtteriä koon mukaan, löydetään www.
 
 ```bash
 ┌──(parallels㉿kali-linux-2024-2)-[~/wordlists]
@@ -753,7 +753,7 @@ parallels@debian-gnu-linux-12-6:~$ curl 10.37.129.5 -H 'Host: pinkkila.com' -v
 <body>
 ```
 
-Apache2 pitäis configuroida niin, että jos ServerName:a tai ServerHost:ia ei löydy palautuisi joku geneerinen not found sivu, jos haluaisi tässä myös admin sivun löytää fuzzaamalla. Jätän sen ajanpuutteen vuoksi seuraavaan kertaan. 
+Jos haluaisi, että admin sivu löytyisi myös fuzzaamalla, pitäisi apache2 configuroida niin, että jos ServerName:a tai ServerAlis:ia ei löydy, palautuisi joku geneerinen not found sivu. Jätän sen ajanpuutteen vuoksi seuraavaan kertaan. 
 
 ---
 
@@ -784,3 +784,5 @@ Apache2 pitäis configuroida niin, että jos ServerName:a tai ServerHost:ia ei l
 [^12]: mdn web docs. 429 Too Many Requests: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429
 
 [^13]: The Apache Software Foundation. Name-based Virtual Host Support: https://httpd.apache.org/docs/current/vhosts/name-based.html
+
+[^14]: Docker Inc. docker buildx build: https://docs.docker.com/reference/cli/docker/buildx/build/
