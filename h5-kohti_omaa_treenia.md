@@ -25,7 +25,7 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
     - Artikkelin piti olla JUFO:ssa mutta en osannut ilmeisesti käyttää sitä, koska en löytänyt sopivaa artikkelia. 
     - Valitsin kuitenkin ADVANCEMENTS IN AUTHENTICATION MECHANISMS USING OAUTH 2.0
       AND SAML - https://www.researchgate.net/profile/Kumaresan-Durvas-Jayaraman/publication/390172665_ADVANCEMENTS_IN_AUTHENTICATION_MECHANISMS_USING_OAUTH_20_AND_SAML/links/67e324bb72f7f37c3e8d9210/ADVANCEMENTS-IN-AUTHENTICATION-MECHANISMS-USING-OAUTH-20-AND-SAML.pdf [^16]
-    - Tiivistelmä: 
+    - Tiivistelmä (perustuu artikkelin tiivistelmään): 
     
         - OAuth 2.0 autentikointi kehys, jonka avulla kolmannen osapuolen sovellukset voivat  saada käyttöönsä käyttäjän tietoja sovelluksesta ilman, että käyttäjän salasanaa jaetaan.
         - OAuth 2.0 on erittäin laajasti käytetty autentikointi tapa.
