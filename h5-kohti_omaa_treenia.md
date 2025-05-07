@@ -14,7 +14,7 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
 
 ## a) HTB Dancing. Ratkaise HackTheBox.com: Starting Point: Tier 0: Dancing. [4]
 
-#### Huom! Katsoin tehtävän annon väärin ja tein Tier 0:sta kaikki ilmaset. Tässä on ensimmäisenä se Dancin ja jos et halua spoilereita muista tehtävistä, niin hyppää b tehtävään.
+#### Huom! Katsoin tehtävän annon väärin ja tein Tier 0:sta kaikki ilmaiset. Tässä on ensimmäisenä se Dancin ja jos et halua spoilereita muista tehtävistä, niin hyppää b tehtävään.
 
 #### Tier 0 Dancing
 
@@ -54,6 +54,20 @@ smb: \James.P\>
 
 ## Sploilerit alkaa kohta
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -281,6 +295,26 @@ Käytin tässäkin rediksen dokumentaatiota [^9]
 
 ---
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
