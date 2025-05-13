@@ -14,7 +14,9 @@ https://github.com/pinkkila/tunkeutumistestaus/blob/main/h2-taysin_laillinen_ser
 
 https://github.com/pinkkila/tunkeutumistestaus/blob/main/h2-taysin_laillinen_sertifikaatti.md#l-vapaaehtoinen-mitmproxy-asenna-mitmproxy-esittele-sitä-terminaalissa-tui-ota-tls-purku-käyttöön-22
 
+#### h4 - h (en saanut loppuun)
 
+https://github.com/pinkkila/tunkeutumistestaus/blob/main/h4-leviamassa.md#h-vapaaehtoinen-asenna-windows-virtuaalikone-ja-tee-msfvenomilla-ohjelma-siihen
 
 ---
 
