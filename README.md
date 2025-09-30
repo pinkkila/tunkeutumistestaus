@@ -1,4 +1,4 @@
-# Tunkeutumistestaus (Penetration testing) Homework Reports
+# Penetration testing (Tunkeutumistestaus) Homework Reports
 
 Homework reports for [Tunkeutumistestaus course](https://terokarvinen.com/2024/tunkeutumistestaus-ici001as3a-3002-2024p4-loppusyksy-pentest/) taught by Tero Karvinen.
 In this course, I gained hands-on experience with penetration testing tools, methodologies, and reporting workflows.
